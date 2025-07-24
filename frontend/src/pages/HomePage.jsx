@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from "../components/Navbar"
-import axios from "axios"
+import api from '../lib/axios';
 import toast from 'react-hot-toast';
 import NoteCard from '../components/NoteCard';
 import { NoNotesFound } from '../components/NoNotesFound';
@@ -12,7 +12,7 @@ const HomePage = () => {
   useEffect(()=>{
     const fetchNotes =async() =>{
       try {
-        const res=await axios.get("http://localhost:5001/api/notes")
+        const res=await api.get("/notes")
         setNotes(res.data);
       } catch (error) {
         console.log("Error in fetching");

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../lib/axios';
 import { ArrowLeftIcon, LoaderIcon, Trash2Icon } from 'lucide-react';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
@@ -16,7 +16,7 @@ const NoteDetailPage = () => {
   useEffect(()=> {
     const fetchNote=async() =>{
       try {
-        const res=await axios.get(`http://localhost:5001/api/notes/${id}`)
+        const res=await api.get(`/notes/${id}`)
         setNote(res.data)
       } catch (error) {
         toast.error("failed to fetch the note")
@@ -30,7 +30,7 @@ const NoteDetailPage = () => {
   const handleDelete = async() =>{
     if(!window.confirm("are you sure to delete the note ?"))return;
     try {
-      await axios.delete(`http://localhost:5001/api/notes/${id}`) //deleting note
+      await api.delete(`/notes/${id}`) //deleting note
 
       toast.success("note deleted successfully")
       navigate("/")
@@ -47,7 +47,7 @@ const handleSave = async() =>{
   }
   setSaving(true)
   try {
-    await axios.put(`http://localhost:5001/api/notes/${id}`,note)
+    await api.put(`/notes/${id}`,note)
     toast.success("Note updated successfully")
     navigate("/")
   } catch (error) {
