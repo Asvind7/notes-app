@@ -1,5 +1,7 @@
 # 📝 Notes App
 
+**Live Demo:** [https://notes-app-yu7j.vercel.app/](https://notes-app-yu7j.vercel.app/)
+
 A modern, full-stack notes management application built with the MERN stack (MongoDB, Express, React, Node.js). This app features a clean, responsive UI with premium aesthetics, including dark mode support and a variety of themes.
 
 ## ✨ Features
