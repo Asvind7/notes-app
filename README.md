@@ -61,8 +61,7 @@ You can run both the frontend and backend simultaneously from the root directory
 npm start
 ```
 
-- **Frontend**: [http://localhost:5173](http://localhost:5173)
-- **Backend API**: [http://localhost:5001](http://localhost:5001)
+Once running, the application will be accessible at the default ports configured in your environment.
 
 ## 🛠️ Tech Stack
 
