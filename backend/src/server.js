@@ -24,19 +24,25 @@ if(process.env.NODE_ENV !== "production"){
 app.use(express.json()) //this middleware json file
 
 
-app.use("/api/notes", notesRoutes);
 
-
-if(process.env.NODE_ENV === "production"){
-  app.use(express.static(path.join(__dirname,"../frontend/dist")))
-
-  app.get("*",(req,res)=>{
-  res.sendFile(path.join(__dirname,"../frontend","dist","index.html"))
-})
+// Middleware for production CORS (if needed for deployment)
+if (process.env.NODE_ENV === "production") {
+  app.use(cors());
 }
 
-connectDB().then(()=> {
-  app.listen(5001,() =>{
-    console.log("server started on port",PORT);
-  })
-});
+app.use("/api/notes", notesRoutes);
+
+// Export for Vercel serverless functions
+export default app;
+
+// Local development server start
+if (process.env.NODE_ENV !== "production") {
+  connectDB().then(() => {
+    app.listen(PORT, () => {
+      console.log("Server started locally on port", PORT);
+    });
+  });
+} else {
+  // Establish connection for serverless environment
+  connectDB();
+}
